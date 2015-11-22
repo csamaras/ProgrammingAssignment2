@@ -1,3 +1,12 @@
+# The following pair of functions cache the inverse of a matrix.
+# If the contents (namely, dimensions and elements) of the provided matrix are not changed,
+# its inverse matrix can be looked up in the cache rather than recomputed.
+# It is assumed that the matrix supplied is always invertible.
+
+# Function makeCacheMatrix() creates a special "matrix" object that can cache its inverse.
+# It returns a list with setter and getter functions, which set and get the initial matrix
+# and its inverse matrix.
+
 makeCacheMatrix <- function(initial_matrix = matrix()) {
     # initialize the inverse matrix
     inverse_matrix <- NULL
@@ -26,6 +35,10 @@ makeCacheMatrix <- function(initial_matrix = matrix()) {
     # return a list with setter and getter functions for both the initial matrix and the inverse matrix
     return(list(set = set, get = get, setInverseMatrix = setInverseMatrix, getInverseMatrix = getInverseMatrix))
 }
+
+# Function cacheSolve() computes and returns the inverse of the supplied matrix.
+# If the inverse matrix has already been calculated (and the supplied matrix has not changed),
+# then the function retrieves the inverse matrix from the cache.
 
 cacheSolve <- function(initial_matrix, ...) {
     # get the inverse matrix
